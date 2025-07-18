@@ -10,6 +10,7 @@ API RESTful untuk mengelola daftar tugas yang dibangun dengan Express.js dan Pos
 - ✅ Penanganan error dan validasi
 - ✅ CORS diaktifkan
 - ✅ Konfigurasi environment
+- ✅ **Dokumentasi Swagger (OpenAPI)**
 
 ## Prasyarat
 
@@ -37,6 +38,8 @@ API RESTful untuk mengelola daftar tugas yang dibangun dengan Express.js dan Pos
    # Konfigurasi Server
    PORT=3000
    NODE_ENV=development
+   # Untuk koneksi SSL (jika pakai Neon atau cloud Postgres)
+   # DB_SSLMODE=require
    ```
 
 4. Buat database PostgreSQL:
@@ -63,6 +66,14 @@ npm start
 
 Server akan berjalan di `http://localhost:3000` (atau port yang ditentukan di file `.env`).
 
+## Dokumentasi API (Swagger)
+
+Setelah server berjalan, akses dokumentasi interaktif di:
+```
+http://localhost:3000/api-docs
+```
+Swagger UI akan menampilkan seluruh endpoint beserta contoh request/response.
+
 ## Endpoint API
 
 ### Todos
@@ -82,6 +93,7 @@ Server akan berjalan di `http://localhost:3000` (atau port yang ditentukan di fi
 |--------|----------|-----------|
 | GET | `/` | Informasi API |
 | GET | `/health` | Pengecekan kesehatan server |
+| GET | `/api-docs` | Dokumentasi Swagger (OpenAPI) |
 
 ## Contoh Request/Response
 
@@ -155,6 +167,7 @@ todolist/
 ├── database/
 │   ├── schema.sql        # Skema database
 │   └── init.js           # Script inisialisasi database
+├── swagger.js            # Konfigurasi Swagger (OpenAPI)
 └── README.md             # File ini
 ```
 
@@ -187,6 +200,17 @@ API mengembalikan response error yang konsisten:
 - `DB_PASSWORD` - Password database
 - `PORT` - Port server (default: 3000)
 - `NODE_ENV` - Environment (development/production)
+- `DB_SSLMODE` - (opsional, untuk koneksi SSL ke database cloud)
+
+### Dependensi Swagger
+
+- `swagger-ui-express` - Untuk tampilan Swagger UI
+- `swagger-jsdoc` - Untuk generate spesifikasi OpenAPI dari anotasi JSDoc
+
+Install dengan:
+```bash
+npm install swagger-ui-express swagger-jsdoc
+```
 
 ## Lisensi
 
