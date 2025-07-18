@@ -2,6 +2,43 @@ const express = require('express');
 const router = express.Router();
 const Todo = require('../models/Todo');
 
+/**
+ * @swagger
+ * /api/todos:
+ *   get:
+ *     summary: Ambil semua todo
+ *     tags:
+ *       - Todos
+ *     responses:
+ *       200:
+ *         description: Daftar todo
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: integer
+ *                       title:
+ *                         type: string
+ *                       description:
+ *                         type: string
+ *                       completed:
+ *                         type: boolean
+ *                       created_at:
+ *                         type: string
+ *                         format: date-time
+ *                       updated_at:
+ *                         type: string
+ *                         format: date-time
+ */
 // GET /api/todos - Ambil semua todo
 router.get('/', async (req, res) => {
   try {
